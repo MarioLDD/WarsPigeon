@@ -16,21 +16,23 @@ public class PlayerController : MonoBehaviour
     private float maxAltitud = 10f;
     private float xMaxMove = 75f;
     private float zMaxMove = 50f;
-    public Rigidbody player;
+  //  public Rigidbody player;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        player = GetComponent<Rigidbody>();
+       // player = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        rotacionInput = Input.GetAxis("Mouse X");
 
+        if (!PauseControl.gameIsPaused)
+        {
+            rotacionInput = Input.GetAxis("Mouse X");
 
+            verticalInput = Input.GetAxis("Vertical");
 
-        verticalInput = Input.GetAxis("Vertical");
-        
             transform.Translate(Vector3.up * verticalInput * Time.deltaTime * verticalSpeed);
 
             if (Input.GetKey(KeyCode.LeftShift))
@@ -41,35 +43,21 @@ public class PlayerController : MonoBehaviour
 
             else
             {
-              //  player.velocity = Vector3.forward * speed;
-                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                //  player.velocity = Vector3.forward * speed;
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
             }
 
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, -xMaxMove, xMaxMove), Mathf.Clamp(transform.position.y, minAltitud, maxAltitud), Mathf.Clamp(transform.position.z, -zMaxMove, zMaxMove));
 
-        
 
+            transform.Rotate(Vector3.up * Time.deltaTime * rotacionSpeed * rotacionInput);
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                //Debug.Log("bomba va");
 
-
-
-
-
-
-
-
-
-        
-
-        
-
-        transform.Rotate(Vector3.up * Time.deltaTime * rotacionSpeed * rotacionInput);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            //Debug.Log("bomba va");
-
-            pointFire.GetComponent<Disparo>().Lanzar();
+                pointFire.GetComponent<Disparo>().Lanzar();
+            }
         }
     }
 
@@ -93,7 +81,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+   
 }
 
 

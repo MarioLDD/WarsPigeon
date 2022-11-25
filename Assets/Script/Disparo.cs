@@ -13,7 +13,7 @@ public class Disparo : MonoBehaviour
 
     void Start()
     {
-        ammunitionUI.text = ammunition.ToString();
+        ammunitionUI.text = "Ammo: " + ammunition.ToString();
 
     }
     public void Lanzar()
@@ -22,7 +22,7 @@ public class Disparo : MonoBehaviour
         {
             ammunition -= 1;
 
-            ammunitionUI.text = ammunition.ToString();
+            ammunitionUI.text = "Ammo: " + ammunition.ToString();
 
             Rigidbody fire = Instantiate(projectile, transform.position, transform.rotation);
 

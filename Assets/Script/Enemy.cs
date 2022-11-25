@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public bool enemyState;
     public bool randomState;
     public bool targetState;
-    
+
     void Start()
     {
         enemyState = true;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         navigation = GetComponent<NavMeshAgent>();
 
-        InvokeRepeating("RandomNav", 2f, 5f);
+        InvokeRepeating("RandomNav", 1f, 6f);
     }
 
     void Update()
@@ -43,11 +43,11 @@ public class Enemy : MonoBehaviour
         // Debug.Log(navigation.velocity.magnitude);   velocidad del movimiento
 
         //detengo animaciones si la velocidad del NavAgent es baja
-       /* if (navigation.velocity.magnitude < 1)
+        if (navigation.velocity.magnitude < 1)
         {
             playerAnim.SetFloat("Speed_f", 0f);
             playerAnim.SetBool("Static_b", true);
-        }*/
+        }
 
     }
 
@@ -75,12 +75,12 @@ public class Enemy : MonoBehaviour
                 {
                     if (oA < oB)
                     {
-                       // Debug.Log("cerca de A");
+                        // Debug.Log("cerca de A");
                         navigation.SetDestination(new Vector3(transform.position.x, transform.position.y, a.position.z));
                     }
                     else
                     {
-                       // Debug.Log("cerca de B");
+                        // Debug.Log("cerca de B");
                         navigation.SetDestination(new Vector3(b.position.x, transform.position.y, transform.position.z));
                     }
                 }
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
                     }
                     else
                     {
-                       // Debug.Log("cerca de D");
+                        // Debug.Log("cerca de D");
                         navigation.SetDestination(new Vector3(d.position.x, transform.position.y, transform.position.z));
                     }
                 }
@@ -104,12 +104,12 @@ public class Enemy : MonoBehaviour
                 {
                     if (oC < oB)
                     {
-                       // Debug.Log("cerca de C");
+                        // Debug.Log("cerca de C");
                         navigation.SetDestination(new Vector3(transform.position.x, transform.position.y, c.position.z));
                     }
                     else
                     {
-                       // Debug.Log("cerca de B");
+                        // Debug.Log("cerca de B");
                         navigation.SetDestination(new Vector3(b.position.x, transform.position.y, transform.position.z));
                     }
                 }
@@ -117,17 +117,17 @@ public class Enemy : MonoBehaviour
                 {
                     if (oC < oD)
                     {
-                       // Debug.Log("cerca de C");
+                        // Debug.Log("cerca de C");
                         navigation.SetDestination(new Vector3(transform.position.x, transform.position.y, c.position.z));
                     }
                     else
                     {
-                       // Debug.Log("cerca de D");
+                        // Debug.Log("cerca de D");
                         navigation.SetDestination(new Vector3(d.position.x, transform.position.y, transform.position.z));
                     }
                 }
             }
-            
+
 
             enemyController.GetComponent<EnemyController>().EnemyKilled(); //llamo al metodo que se encarga de controlar la cantidad de enemigos restantes y los muestra en el HUB
         }
@@ -139,15 +139,15 @@ public class Enemy : MonoBehaviour
 
         }
 
-        if (collision.gameObject.CompareTag("TargetTree") && targetState) //detecto si el enemigo llego a su target
+        if (collision.gameObject.CompareTag("TargetTree") && targetState) //detecto si el enemigo llego a su target y bloqueo para q no haga multiples golpes
         {
             targetState = false;
             enemyController.GetComponent<EnemyController>().EggsCount(); //llamo al metodo que se encarga de controlar la cantidad de huevos restantes y los muestra en el HUB
             Debug.Log("eggsssss");
-            InvokeRepeating("RandomNav", 0f, 8f);
-            Debug.Log(!IsInvoking("RandomNav"));
-           
-
+            InvokeRepeating(nameof(RandomNav), 0f, 6f);
+            randomState = true;
+            
+            Invoke("ResetTarget", 5f);
         }
     }
 
@@ -156,11 +156,15 @@ public class Enemy : MonoBehaviour
         if (randomState)
         {
             navigation.destination = new Vector3(Random.Range(d.transform.position.x, b.transform.position.x), 0, Random.Range(c.transform.position.z, a.transform.position.z));
-
+           
             Walk();
         }
 
 
+    }
+    void ResetTarget()
+    {
+        targetState = true;
     }
 
     public void Walk() //animacion de caminar
@@ -174,7 +178,7 @@ public class Enemy : MonoBehaviour
     {
         //   Debug.Log("RUNNNNN");
         navigation.destination = treeTarget.position;
-        navigation.speed = 5f;        
+        navigation.speed = 5f;
         playerAnim.SetFloat("Speed_f", 0.51f);
         playerAnim.SetBool("Static_b", true);
         randomState = false;
@@ -186,6 +190,3 @@ public class Enemy : MonoBehaviour
         playerAnim.SetBool("Static_b", true);
     }
 }
-
-
-

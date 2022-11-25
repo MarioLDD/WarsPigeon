@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     public TMP_Text killsUI;
     public TMP_Text eggsUI;
 
-        void Start()
+    void Start()
     {
         enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         enemyCounter = enemyList.Length;
@@ -28,11 +28,11 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.P)) EnemyToTarget();
-           
+
     }
     //12 segundos
 
@@ -48,14 +48,14 @@ public class EnemyController : MonoBehaviour
             Debug.Log(actualEnemy.name);                //sacar
 
         }
-        else EnemyToTarget();
+          else EnemyToTarget();
 
     }
 
     public void EnemyKilled()
     {
         Kills++;
-        killsUI.text = Kills.ToString();
+        killsUI.text = "Kills: " + Kills.ToString() + " / " + enemyList.Length.ToString();
         enemyCounter--;
         if (enemyCounter == 0)
         {
@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
         }
         if (eggsRemaining == 0)
         {
-                        SceneManager.LoadScene("GameOverMenu");
+            SceneManager.LoadScene("GameOverMenu");
         }
     }
 }
