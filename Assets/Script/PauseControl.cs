@@ -25,7 +25,7 @@ public class PauseControl : MonoBehaviour
         if (gameIsPaused)
         {
             Time.timeScale = 0f;
-                        Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Confined;
             transform.GetChild(4).gameObject.SetActive(true);
         }
         else

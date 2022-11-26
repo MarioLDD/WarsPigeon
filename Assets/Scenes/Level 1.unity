@@ -76003,7 +76003,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -85.8, y: -30}
-  m_SizeDelta: {x: 146.14, y: 50}
+  m_SizeDelta: {x: 171.96, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677860462
 MonoBehaviour:
@@ -98791,7 +98791,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -98905,7 +98905,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -99019,7 +99019,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -99133,7 +99133,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -99255,7 +99255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8322570152811026304, guid: c9919a4578b30074a9f974f4f6afdbe6, type: 3}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8322570152811026305, guid: c9919a4578b30074a9f974f4f6afdbe6, type: 3}
       propertyPath: pause

@@ -37,11 +37,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        // Debug.Log(navigation.desiredVelocity.magnitude);       velocidad definida
-        //  Debug.Log(navigation.speed);  velocidad definida
-
-        // Debug.Log(navigation.velocity.magnitude);   velocidad del movimiento
-
         //detengo animaciones si la velocidad del NavAgent es baja
         if (navigation.velocity.magnitude < 1)
         {
@@ -143,10 +138,10 @@ public class Enemy : MonoBehaviour
         {
             targetState = false;
             enemyController.GetComponent<EnemyController>().EggsCount(); //llamo al metodo que se encarga de controlar la cantidad de huevos restantes y los muestra en el HUB
-            Debug.Log("eggsssss");
+
             InvokeRepeating(nameof(RandomNav), 0f, 6f);
             randomState = true;
-            
+
             Invoke("ResetTarget", 5f);
         }
     }
@@ -156,7 +151,7 @@ public class Enemy : MonoBehaviour
         if (randomState)
         {
             navigation.destination = new Vector3(Random.Range(d.transform.position.x, b.transform.position.x), 0, Random.Range(c.transform.position.z, a.transform.position.z));
-           
+
             Walk();
         }
 

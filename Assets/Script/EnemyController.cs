@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
         enemyCounter = enemyList.Length;
         InvokeRepeating("EnemyToTarget", 20f, 12f);
         Kills = 0;
+        killsUI.text = "Kills: " + Kills.ToString() + " / " + enemyList.Length.ToString();
         eggsRemaining = 3;
 
     }
