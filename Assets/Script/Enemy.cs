@@ -36,14 +36,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
-        //detengo animaciones si la velocidad del NavAgent es baja
-        if (navigation.velocity.magnitude < 1)
-        {
-            playerAnim.SetFloat("Speed_f", 0f);
-            playerAnim.SetBool("Static_b", true);
-        }
-
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -166,22 +159,20 @@ public class Enemy : MonoBehaviour
     {
         // Debug.Log("Walking");
         navigation.speed = 3.5f;
-        playerAnim.SetFloat("Speed_f", 0.26f);
-        playerAnim.SetBool("Static_b", true);
+        playerAnim.SetBool("Runing", false);
+        playerAnim.SetBool("Walking", true);
     }
     public void Run() //animacion de correr 
     {
         //   Debug.Log("RUNNNNN");
         navigation.destination = treeTarget.position;
         navigation.speed = 5f;
-        playerAnim.SetFloat("Speed_f", 0.51f);
-        playerAnim.SetBool("Static_b", true);
+        playerAnim.SetBool("Runing", true);
         randomState = false;
     }
     void Escape() //animacion de escape
     {
         navigation.speed = 10f;
-        playerAnim.SetFloat("Speed_f", 0.51f);
-        playerAnim.SetBool("Static_b", true);
+        playerAnim.SetBool("Scaping", true);
     }
 }

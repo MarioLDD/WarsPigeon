@@ -10,6 +10,10 @@ TagManager:
   - Ground
   - Food
   - TargetTree
+  - Bounds_A
+  - Bounds_B
+  - Bounds_C
+  - Bounds_D
   layers:
   - Default
   - TransparentFX

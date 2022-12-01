@@ -5,6 +5,8 @@ using UnityEngine;
 public class PauseControl : MonoBehaviour
 {
     public static bool gameIsPaused;
+
+    public GameObject Crosshair;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,14 @@ public class PauseControl : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.Confined;
             transform.GetChild(4).gameObject.SetActive(true);
+            Crosshair.SetActive(false);
         }
         else
         {
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             transform.GetChild(4).gameObject.SetActive(false);
+            Crosshair.SetActive(true);
         }
     }
 
@@ -43,6 +47,7 @@ public class PauseControl : MonoBehaviour
 
     public void Continue()
     {
+        Debug.Log("pausa");
         gameIsPaused = !gameIsPaused;
         PauseGame();
         Debug.Log("sacar pausa");
