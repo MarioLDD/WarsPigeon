@@ -21,8 +21,9 @@ public class EnemyControllerLvl0 : MonoBehaviour
     void Start()
     {
         enemyList = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyCounter = enemyList.Length;
-      //  InvokeRepeating("EnemyToTarget", 20f, 12f);
+        enemyCounter = 4;
+        //  enemyCounter = enemyList.Length;
+        //  InvokeRepeating("EnemyToTarget", 20f, 12f);
         Kills = 0;
         killsUI.text = "Kills: " + Kills.ToString() + " / " + enemyList.Length.ToString();
         eggsRemaining = 3;
@@ -60,7 +61,7 @@ public class EnemyControllerLvl0 : MonoBehaviour
         if (enemyCounter == 0)
         {
             timeControl.GetComponent<TimeControl>().Score();
-            // SceneManager.LoadScene("WinMenu");
+             SceneManager.LoadScene("WinMenu");
         }
 
     }

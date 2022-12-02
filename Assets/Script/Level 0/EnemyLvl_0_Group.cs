@@ -24,45 +24,36 @@ public class EnemyLvl_0_Group : MonoBehaviour
     public bool randomState;
     public bool targetState;
 
-  //  private float time;
+    //  private float time;
 
     void Start()
     {
         treeTarget = GameObject.FindGameObjectWithTag("TargetTree").transform;
+        enemyController = GameObject.FindGameObjectWithTag("EnemyManager");
+        a = GameObject.FindGameObjectWithTag("Bounds_A").transform;
+        b = GameObject.FindGameObjectWithTag("Bounds_B").transform;
+        c = GameObject.FindGameObjectWithTag("Bounds_C").transform;
+        d = GameObject.FindGameObjectWithTag("Bounds_D").transform;
+
+
 
         enemyState = true;
         randomState = true;
         targetState = true;
-        
+
         playerAnim = GetComponent<Animator>();
         navigation = GetComponent<NavMeshAgent>();
         Run();
-        
-       // InvokeRepeating("RandomNav", 1f, 6f);
+
+        // InvokeRepeating("RandomNav", 1f, 6f);
     }
 
     void Update()
     {
-       // playerAnim.SetFloat("Head_Vertical_f", 1, 2, 0.01f);
-        /*
-        time += Time.deltaTime;
-
-        if (time == )
-
-        
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SpawnEnemy();
-        }
-        */
 
 
-        //detengo animaciones si la velocidad del NavAgent es baja
-        if (navigation.velocity.magnitude < 1)
-        {
-            playerAnim.SetFloat("Speed_f", 0f);
-            playerAnim.SetBool("Static_b", true);
-        }
+
+
 
     }
 
@@ -74,7 +65,7 @@ public class EnemyLvl_0_Group : MonoBehaviour
             enemyState = false;
             Instantiate(impactParticle, collision.transform);
 
-           // CancelInvoke("RandomNav"); //detego la invocacion al metodo de nevegacion random
+
 
             Escape(); //activo animacion de escape
 
@@ -144,77 +135,46 @@ public class EnemyLvl_0_Group : MonoBehaviour
             }
 
 
-            enemyController.GetComponent<EnemyController>().EnemyKilled(); //llamo al metodo que se encarga de controlar la cantidad de enemigos restantes y los muestra en el HUB
+            enemyController.GetComponent<EnemyControllerLvl0>().EnemyKilled(); //llamo al metodo que se encarga de controlar la cantidad de enemigos restantes y los muestra en el HUB
         }
 
-        if (collision.gameObject.CompareTag("Bounds")) //lo elimino al llegar al borde del mapa
-        {
-
+        if (collision.gameObject.tag.Contains("Bounds"))
+        { 
             Destroy(gameObject);
-            //SpawnEnemy();
-            //SceneManager.LoadScene("WinMenu");
+
+
         }
-        /*
+
+
+
+
+      
+
         if (collision.gameObject.CompareTag("TargetTree") && targetState) //detecto si el enemigo llego a su target y bloqueo para q no haga multiples golpes
         {
             targetState = false;
             enemyController.GetComponent<EnemyController>().EggsCount(); //llamo al metodo que se encarga de controlar la cantidad de huevos restantes y los muestra en el HUB
 
-            InvokeRepeating(nameof(RandomNav), 0f, 6f);
-            randomState = true;
 
-            Invoke("ResetTarget", 5f);
+
+
+
         }
-        */
-    }
-    /*
-    public void SpawnEnemy()
-    {
-        Instantiate(enemy, spawnPoint.transform);
-
-        
 
     }
 
-  
-    void RandomNav() //metodo de navegacion random
-    {
-        if (randomState)
-        {
-            navigation.destination = new Vector3(Random.Range(d.transform.position.x, b.transform.position.x), 0, Random.Range(c.transform.position.z, a.transform.position.z));
-
-            Walk();
-        }
-    }
-    
-    
-    void ResetTarget()
-    {
-        targetState = true;
-    }
-    
-    public void Walk() //animacion de caminar
-    {
-        // Debug.Log("Walking");
-        navigation.speed = 3.5f;
-        playerAnim.SetFloat("Speed_f", 0.26f);
-        playerAnim.SetBool("Static_b", true);
-    }
-    */
     public void Run() //animacion de correr 
     {
         //   Debug.Log("RUNNNNN");
         navigation.destination = treeTarget.position;
         navigation.speed = 5f;
-        playerAnim.SetFloat("Speed_f", 0.51f);
-        playerAnim.SetBool("Static_b", true);
-        //randomState = false;
+        playerAnim.SetBool("Runing", true);
+
     }
-    
+
     void Escape() //animacion de escape
     {
         navigation.speed = 10f;
-        playerAnim.SetFloat("Speed_f", 0.51f);
-        playerAnim.SetBool("Static_b", true);
+        playerAnim.SetBool("Escaping", true);
     }
 }

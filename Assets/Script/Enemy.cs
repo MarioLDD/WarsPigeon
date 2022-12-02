@@ -173,6 +173,6 @@ public class Enemy : MonoBehaviour
     void Escape() //animacion de escape
     {
         navigation.speed = 10f;
-        playerAnim.SetBool("Scaping", true);
+        playerAnim.SetBool("Escaping", true);
     }
 }

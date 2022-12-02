@@ -16,16 +16,21 @@ public class PlayerController : MonoBehaviour
     private float maxAltitud = 10f;
     private float xMaxMove = 75f;
     private float zMaxMove = 50f;
+
+    public Transform enemyGroup;
   //  public Rigidbody player;
 
     void Start()
     {
+
         Cursor.lockState = CursorLockMode.Locked;
        // player = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+
+        
 
         if (!PauseControl.gameIsPaused)
         {
@@ -80,7 +85,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public void LookAtEnemy()
+    {
+        enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").transform;
+        transform.LookAt(enemyGroup);
+    }
    
 }
 
