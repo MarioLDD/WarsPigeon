@@ -16,6 +16,7 @@ TagManager:
   - Bounds_D
   - EnemyManager
   - EnemyGroup
+  - FoodParticles
   layers:
   - Default
   - TransparentFX
